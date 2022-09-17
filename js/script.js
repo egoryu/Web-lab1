@@ -1,4 +1,24 @@
 $(function() {
+    function start() {
+        /*if (typeof document.cookie["count"] == 'undefined')
+            return;*/
+        let count = getCookie("count");
+        for (let i = 0; i < count; i++)
+        {
+            let data = getCookie("result" + i, true);
+            if (data.validate) {
+                let newRow = '<tr>';
+                newRow += '<td>' + data.xval + '</td>';
+                newRow += '<td>' + data.yval + '</td>';
+                newRow += '<td>' + data.rval + '</td>';
+                newRow += '<td>' + data.curtime + '</td>';
+                newRow += '<td>' + data.exectime + '</td>';
+                newRow += '<td>' + data.hitres + '</td></tr>';
+                $('#result-table').append(newRow);
+            }
+        }
+    }
+
     function isNumeric(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
@@ -13,13 +33,10 @@ $(function() {
     }
 
     function validateY() {
-        const Y_MIN = -3;
-        const Y_MAX = 5;
-
         let yField = $('#y-textinput');
         let numY = yField.val().replace(',', '.');
 
-        if (isNumeric(numY) && numY >= Y_MIN && numY <= Y_MAX) {
+        if (isNumeric(numY) && numY > -3 && numY < 5) {
             return true;
         } else {
             $('#error').text('Неправильный формат y');
@@ -53,7 +70,7 @@ $(function() {
         $.ajax({
             url: 'php/work.php',
             method: 'GET',
-            data: $(this).serialize(),
+            data: $(this).serialize() + '&time=' + new Date().getTimezoneOffset(),
             dataType: "json",
             success: function(data) {
                 if (data.validate) {
@@ -71,4 +88,5 @@ $(function() {
             }
         });
     });
+    start();
 });

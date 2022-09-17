@@ -11,14 +11,14 @@ body {
 }
 
 #header-plate {
-    padding: 1em 30px;
+    padding: 1%;
     font-size: 20px;
     color: #ffffff;
     background-color: #440086FF;
 }
 
 .content-plate {
-    padding: 0 0 20px;
+    padding: 0 0 2%;
     vertical-align: center;
     background-origin: border-box;
 }
@@ -46,7 +46,7 @@ input[type=radio]{
     display: inline-block;
     cursor: cell;
     position: relative;
-    margin-right: 5px;
+    margin-right: 0.5%;
 }
 
 #y-textinput {
@@ -120,7 +120,6 @@ input[type=radio]{
 #result-table tr.table-header:hover {
     background-color: #c8b5e9;
 }
-
 
 .coords-col {
     width: 12%;
