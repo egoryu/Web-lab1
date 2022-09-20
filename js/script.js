@@ -1,11 +1,13 @@
 $(function() {
     function start() {
-        /*if (typeof document.cookie["count"] == 'undefined')
-            return;*/
         let count = getCookie("count");
-        for (let i = 0; i < count; i++)
+        if (typeof(count) == "undefined")
+            return;
+        for (let i = 0; i <= count + 1; i++)
         {
             let data = getCookie("result" + i, true);
+            if (typeof(data) == "undefined")
+                continue;
             if (data.validate) {
                 let newRow = '<tr>';
                 newRow += '<td>' + data.xval + '</td>';
