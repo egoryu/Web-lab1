@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,13 +60,13 @@
 
                         <td>
                             <div>
-                            <select id='r-value' name="r">
-                                <option value="1">1</option>
-                                <option value="1.5">1.5</option>
-                                <option value="2">2</option>
-                                <option value="2.5">2.5</option>
-                                <option value="3">3</option>
-                            </select>
+                                <select id='r-value' name="r">
+                                    <option value="1">1</option>
+                                    <option value="1.5">1.5</option>
+                                    <option value="2">2</option>
+                                    <option value="2.5">2.5</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </td>
                     </tr>
@@ -98,6 +100,16 @@
                     <th class="time-col">Execution time</th>
                     <th class="hit-col">Hit result</th>
                 </tr>
+                <?php foreach($_SESSION['data'] as $row): ?>
+                <tr>
+                    <td><?= $row['xval'] ?></td>
+                    <td><?= $row['yval'] ?></td>
+                    <td><?= $row['rval'] ?></td>
+                    <td><?= $row['curtime'] ?></td>
+                    <td><?= $row['exectime'] ?></td>
+                    <td><?= $row['hitres'] ?></td>
+                </tr>
+                <?php endforeach; ?>
             </table>
         </td>
     </tr>

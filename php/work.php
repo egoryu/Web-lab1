@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $start = microtime(true);
 
 $x = $_GET['x'];
@@ -39,14 +41,7 @@ $time = number_format($finish-$start,6);
 
 $dt = date("H:i:s", time()-$t*60);
 
-/*$cur = 0;
-if (isset($_COOKIE["count"])) {
-    $cur = $_COOKIE["count"];
-    $cur++;
-}
-
-setcookie("count", $cur, time() + 720, "/");*/
-$jsonData = json_encode([
+$data = [
     "validate" => !$fail,
     "xval" => $x,
     "yval" => $y,
@@ -55,14 +50,10 @@ $jsonData = json_encode([
     "exectime" => $time,
     "hitres" => $check,
     "mistake" => $mistake
-]);
-//setcookie("result" . $cur, $jsonData, time() + 720, "/");
-session_start();
-if (!isset($_SESSION['count'])) {
-    $_SESSION['count'] = 0;
-} else {
-    $_SESSION['count']++;
-}
-$_SESSION['result' . $_SESSION['count']] = $jsonData;
-echo $jsonData;
+];
+
+if ($data['validate'])
+    $_SESSION['data'][] = $data;
+
+echo json_encode($data);
 ?>

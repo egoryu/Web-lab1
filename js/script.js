@@ -1,26 +1,4 @@
 $(function() {
-    function start() {
-        let count = getCookie("count");
-        if (typeof(count) == "undefined")
-            return;
-        for (let i = 0; i <= count + 1; i++)
-        {
-            let data = getCookie("result" + i, true);
-            if (typeof(data) == "undefined")
-                continue;
-            if (data.validate) {
-                let newRow = '<tr>';
-                newRow += '<td>' + data.xval + '</td>';
-                newRow += '<td>' + data.yval + '</td>';
-                newRow += '<td>' + data.rval + '</td>';
-                newRow += '<td>' + data.curtime + '</td>';
-                newRow += '<td>' + data.exectime + '</td>';
-                newRow += '<td>' + data.hitres + '</td></tr>';
-                $('#result-table').append(newRow);
-            }
-        }
-    }
-
     function isNumeric(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
@@ -90,5 +68,4 @@ $(function() {
             }
         });
     });
-    start();
 });
